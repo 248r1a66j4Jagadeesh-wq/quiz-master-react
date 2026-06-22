@@ -4,6 +4,7 @@ import "./styles/App.css";
 
 import Header from "./components/Header";
 import Question from "./components/Question";
+import Result from "./components/Result";
 
 import questions from "./data/questions";
 
@@ -15,6 +16,16 @@ function App() {
 
   const [quizFinished, setQuizFinished] = useState(false);
 
+  function restartQuiz() {
+
+    setCurrentQuestion(0);
+
+    setScore(0);
+
+    setQuizFinished(false);
+
+  }
+
   return (
 
     <div className="app">
@@ -25,17 +36,15 @@ function App() {
 
         quizFinished ? (
 
-          <div className="result">
+          <Result
 
-            <h2>🎉 Quiz Completed!</h2>
+            score={score}
 
-            <h3>
+            totalQuestions={questions.length}
 
-              Your Score : {score} / {questions.length}
+            restartQuiz={restartQuiz}
 
-            </h3>
-
-          </div>
+          />
 
         ) : (
 
