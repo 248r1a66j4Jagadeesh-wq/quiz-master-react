@@ -12,7 +12,13 @@ function Question({
 
   setCurrentQuestion,
 
-  totalQuestions
+  totalQuestions,
+
+  score,
+
+  setScore,
+
+  setQuizFinished
 
 }) {
 
@@ -28,11 +34,21 @@ function Question({
 
     }
 
+    if (selectedOption === question.answer) {
+
+      setScore(score + 1);
+
+    }
+
     if (currentQuestion < totalQuestions - 1) {
 
       setCurrentQuestion(currentQuestion + 1);
 
       setSelectedOption("");
+
+    } else {
+
+      setQuizFinished(true);
 
     }
 
@@ -42,17 +58,17 @@ function Question({
 
     <div className="question">
 
-      <h2>
+      <p>
 
-        Question {question.id}
+        Question {currentQuestion + 1}
 
-      </h2>
+        of
 
-      <h3>
+        {totalQuestions}
 
-        {question.question}
+      </p>
 
-      </h3>
+      <h2>{question.question}</h2>
 
       <Options
 

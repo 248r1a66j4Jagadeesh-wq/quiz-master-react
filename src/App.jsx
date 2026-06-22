@@ -11,23 +11,55 @@ function App() {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
+  const [score, setScore] = useState(0);
+
+  const [quizFinished, setQuizFinished] = useState(false);
+
   return (
 
     <div className="app">
 
       <Header />
 
-      <Question
+      {
 
-        question={questions[currentQuestion]}
+        quizFinished ? (
 
-        currentQuestion={currentQuestion}
+          <div className="result">
 
-        setCurrentQuestion={setCurrentQuestion}
+            <h2>🎉 Quiz Completed!</h2>
 
-        totalQuestions={questions.length}
+            <h3>
 
-      />
+              Your Score : {score} / {questions.length}
+
+            </h3>
+
+          </div>
+
+        ) : (
+
+          <Question
+
+            question={questions[currentQuestion]}
+
+            currentQuestion={currentQuestion}
+
+            setCurrentQuestion={setCurrentQuestion}
+
+            totalQuestions={questions.length}
+
+            score={score}
+
+            setScore={setScore}
+
+            setQuizFinished={setQuizFinished}
+
+          />
+
+        )
+
+      }
 
     </div>
 

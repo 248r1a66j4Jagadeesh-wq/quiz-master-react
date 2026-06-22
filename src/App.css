@@ -202,3 +202,24 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
+.result {
+
+  text-align: center;
+
+  margin-top: 40px;
+
+}
+
+.result h2 {
+
+  color: green;
+
+  margin-bottom: 20px;
+
+}
+
+.result h3 {
+
+  color: #333;
+
+}
