@@ -1,6 +1,14 @@
 import "../styles/Options.css";
 
-function Options({ options }) {
+function Options({
+
+  options,
+
+  selectedOption,
+
+  setSelectedOption
+
+}) {
 
   return (
 
@@ -14,7 +22,15 @@ function Options({ options }) {
 
             key={index}
 
-            className="option-btn"
+            className={
+              selectedOption === option
+                ? "option-btn selected"
+                : "option-btn"
+            }
+
+            onClick={() =>
+              setSelectedOption(option)
+            }
 
           >
 

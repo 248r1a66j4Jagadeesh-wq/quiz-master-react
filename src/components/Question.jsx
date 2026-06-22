@@ -1,35 +1,26 @@
 import "../styles/Question.css";
-
+import { useState } from "react";
 import Options from "./Options";
 
 function Question({ question }) {
 
-  return (
+  const [selectedOption, setSelectedOption] = useState("");
 
+  return (
     <div className="question">
 
-      <h2>
+      <h2>Question {question.id}</h2>
 
-        Question {question.id}
-
-      </h2>
-
-      <h3>
-
-        {question.question}
-
-      </h3>
+      <h3>{question.question}</h3>
 
       <Options
-
         options={question.options}
-
+        selectedOption={selectedOption}
+        setSelectedOption={setSelectedOption}
       />
 
     </div>
-
   );
-
 }
 
 export default Question;
