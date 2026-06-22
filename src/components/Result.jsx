@@ -1,6 +1,15 @@
 import "../styles/Result.css";
+function Result({
 
-function Result({ score, totalQuestions, restartQuiz }) {
+score,
+
+highScore,
+
+totalQuestions,
+
+restartQuiz
+
+}) {
   const percentage =
     totalQuestions > 0
       ? Math.round((score / totalQuestions) * 100)
@@ -20,7 +29,11 @@ function Result({ score, totalQuestions, restartQuiz }) {
       <h3>
         Your Score: {score} / {totalQuestions}
       </h3>
+<h3>
 
+🏆 Highest Score: {highScore} / {totalQuestions}
+
+</h3>
       <h2>{message}</h2>
 
       <div className="progress-container">
