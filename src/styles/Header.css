@@ -1,0 +1,12 @@
+.header {
+  text-align: center;
+}
+
+.header h1 {
+  color: #2563eb;
+  margin-bottom: 10px;
+}
+
+.header p {
+  color: #666;
+}
