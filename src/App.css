@@ -223,3 +223,57 @@ body {
   color: #333;
 
 }
+.theme-btn{
+
+padding:10px 18px;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+margin-bottom:20px;
+
+font-size:16px;
+
+font-weight:bold;
+
+background:#2563eb;
+
+color:white;
+
+transition:.3s;
+
+}
+
+.theme-btn:hover{
+
+opacity:.9;
+
+}
+.dark{
+
+background:#121212;
+
+color:white;
+
+min-height:100vh;
+
+transition:.3s;
+
+}
+.dark .question{
+
+background:#1f1f1f;
+
+color:white;
+
+}
+.dark button{
+
+background:#3b82f6;
+
+color:white;
+
+}

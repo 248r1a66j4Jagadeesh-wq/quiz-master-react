@@ -14,7 +14,13 @@ function App() {
   const [score, setScore] = useState(0);
 
   const [quizFinished, setQuizFinished] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
 
+  const savedTheme = localStorage.getItem("theme");
+
+  return savedTheme === "dark";
+
+});
   const [highScore, setHighScore] = useState(() => {
     const savedScore = localStorage.getItem("highScore");
     return savedScore ? Number(savedScore) : 0;
@@ -29,7 +35,9 @@ function App() {
 
     setQuizFinished(true);
   }
-
+function toggleTheme() {
+  setDarkMode((prev) => !prev);
+}
   // Restart Quiz
   function restartQuiz() {
     setCurrentQuestion(0);
@@ -38,7 +46,13 @@ function App() {
   }
 
   return (
-    <div className="app">
+<div className={darkMode ? "app dark" : "app"}>
+  <button
+  className="theme-btn"
+  onClick={toggleTheme}
+>
+  {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+</button>
       <Header />
 
       {quizFinished ? (
