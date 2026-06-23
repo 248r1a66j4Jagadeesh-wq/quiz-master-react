@@ -13,23 +13,34 @@ function Question({
   const [selectedOption, setSelectedOption] = useState("");
   const [timeLeft, setTimeLeft] = useState(30);
 
+  // Reset state whenever question changes
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (timeLeft > 0) {
-        setTimeLeft((prev) => prev - 1);
+    if (!question) return;
+
+    setSelectedOption("");
+    setTimeLeft(30);
+  }, [question]);
+
+  // Timer
+  useEffect(() => {
+    if (!question) return;
+
+    if (timeLeft <= 0) {
+      if (currentQuestion < totalQuestions - 1) {
+        setCurrentQuestion((prev) => prev + 1);
       } else {
-        if (currentQuestion < totalQuestions - 1) {
-          setSelectedOption("");
-          setTimeLeft(30);
-          setCurrentQuestion((prev) => prev + 1);
-        } else {
-          setQuizFinished(true);
-        }
+        setQuizFinished(true);
       }
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setTimeLeft((prev) => prev - 1);
     }, 1000);
 
     return () => clearTimeout(timer);
   }, [
+    question,
     timeLeft,
     currentQuestion,
     totalQuestions,
@@ -37,7 +48,12 @@ function Question({
     setQuizFinished,
   ]);
 
-  function handleNext() {
+  // Render after hooks
+  if (!question) {
+    return <h2>Loading...</h2>;
+  }
+
+  const handleNext = () => {
     if (selectedOption === "") {
       alert("Please select an answer!");
       return;
@@ -48,13 +64,11 @@ function Question({
     }
 
     if (currentQuestion < totalQuestions - 1) {
-      setSelectedOption("");
-      setTimeLeft(30);
       setCurrentQuestion((prev) => prev + 1);
     } else {
       setQuizFinished(true);
     }
-  }
+  };
 
   return (
     <div className="question">
@@ -62,7 +76,16 @@ function Question({
         Question {currentQuestion + 1} of {totalQuestions}
       </p>
 
-      <h3 className="timer">
+      <div className="progress">
+        <div
+          className="progress-fill"
+          style={{
+            width: `${((currentQuestion + 1) / totalQuestions) * 100}%`,
+          }}
+        ></div>
+      </div>
+
+      <h3 className={timeLeft <= 10 ? "timer danger" : "timer"}>
         ⏳ Time Left: {timeLeft} sec
       </h3>
 
@@ -75,7 +98,7 @@ function Question({
       />
 
       <button className="next-btn" onClick={handleNext}>
-        Next
+        {currentQuestion === totalQuestions - 1 ? "Finish Quiz" : "Next"}
       </button>
     </div>
   );
