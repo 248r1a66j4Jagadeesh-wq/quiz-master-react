@@ -13,14 +13,6 @@ function Question({
   const [selectedOption, setSelectedOption] = useState("");
   const [timeLeft, setTimeLeft] = useState(30);
 
-  // Reset state whenever question changes
-  useEffect(() => {
-    if (!question) return;
-
-    setSelectedOption("");
-    setTimeLeft(30);
-  }, [question]);
-
   // Timer
   useEffect(() => {
     if (!question) return;
@@ -48,13 +40,12 @@ function Question({
     setQuizFinished,
   ]);
 
-  // Render after hooks
   if (!question) {
     return <h2>Loading...</h2>;
   }
 
   const handleNext = () => {
-    if (selectedOption === "") {
+    if (!selectedOption) {
       alert("Please select an answer!");
       return;
     }
@@ -82,7 +73,7 @@ function Question({
           style={{
             width: `${((currentQuestion + 1) / totalQuestions) * 100}%`,
           }}
-        ></div>
+        />
       </div>
 
       <h3 className={timeLeft <= 10 ? "timer danger" : "timer"}>
