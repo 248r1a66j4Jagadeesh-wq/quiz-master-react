@@ -44,7 +44,21 @@ restartQuiz
       </div>
 
       <p>{percentage}% Completed</p>
+<hr />
 
+<h3>Quiz Statistics</h3>
+
+<p>
+Correct Answers : {score}
+</p>
+
+<p>
+Wrong Answers : {totalQuestions - score}
+</p>
+
+<p>
+Accuracy : {percentage}%
+</p>
       <button
         className="restart-btn"
         onClick={restartQuiz}
